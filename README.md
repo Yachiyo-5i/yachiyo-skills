@@ -8,11 +8,24 @@
 |---|---|---|
 | [`apple-dark-ui`](./apple-dark-ui) | 按 Apple HIG（含 Liquid Glass）设计和实现**深色** Web 界面：分层模型、近黑配色与组件顶光、字号体系、同心圆角、玻璃与标准材质、Chromium 上的 SVG 折射、组件与页面模板、移动端胶囊 Tab Bar、实现中的坑和验收清单 | React + Tailwind CSS v4 |
 
-## 使用
+## 快速开始
 
-### Claude Code
+```bash
+npx skills add Yachiyo-5i/yachiyo-skills
+```
 
-把需要的 skill 目录拷贝或软链到个人 skills 目录，Claude 会按 `SKILL.md` 里的 `description` 自动判断是否使用：
+按提示选择 skill 和要安装到的 agent（Claude Code、Cursor 等）即可。装好后直接对话试试：
+
+> 用 apple-dark-ui 做一个深色的订单后台首页，桌面带侧边栏，移动端用胶囊 Tab Bar。
+
+只装其中一个：`npx skills add Yachiyo-5i/yachiyo-skills --skill apple-dark-ui`。
+
+## 其他安装方式
+
+<details>
+<summary>手动安装（Claude Code）</summary>
+
+把需要的 skill 目录拷贝或软链到 skills 目录，Claude 会按 `SKILL.md` 里的 `description` 自动判断是否使用：
 
 ```bash
 # 个人级：所有项目可用
@@ -22,13 +35,14 @@ ln -s "$(pwd)/apple-dark-ui" ~/.claude/skills/apple-dark-ui
 cp -R apple-dark-ui /path/to/project/.claude/skills/
 ```
 
-### Claude 桌面端 / claude.ai
+</details>
 
-打包成 `.skill` 文件后在设置里上传（打包脚本来自 Anthropic 的 `skill-creator`）：
+<details>
+<summary>Claude 桌面端 / claude.ai</summary>
 
-```bash
-python -m scripts.package_skill ./apple-dark-ui ./dist
-```
+到 [Releases](https://github.com/Yachiyo-5i/yachiyo-skills/releases) 下载 `<name>.skill`，在设置里上传即可。每次打 `v*` tag 会由 GitHub Actions 自动打包。
+
+</details>
 
 ## 目录约定
 

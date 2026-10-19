@@ -1,0 +1,28 @@
+name: Release skills
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Package every skill as <name>.skill
+        run: |
+          mkdir -p dist
+          for dir in */; do
+            name="${dir%/}"
+            [ -f "$name/SKILL.md" ] || continue
+            zip -r "dist/$name.skill" "$name" -x '*.DS_Store'
+          done
+          ls -la dist
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.skill
+          generate_release_notes: true
